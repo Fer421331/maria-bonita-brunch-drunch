@@ -2207,34 +2207,51 @@
 
       .nav-links {
         position: fixed;
-        top: 0;
-        right: -100%;
-        width: min(300px, 85vw);
-        height: 100vh;
+        top: 78px;
+        left: 16px;
+        right: 16px;
+        width: auto;
+        height: auto;
         background: rgba(28, 18, 8, .98);
         backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
         align-items: flex-start;
-        justify-content: center;
-        gap: 8px;
-        padding: 80px 36px 36px;
-        z-index: 99;
-        transition: right var(--tr);
-        border-left: 1px solid rgba(245, 236, 215, .08)
+        justify-content: flex-start;
+        gap: 6px;
+        padding: 22px 24px;
+        z-index: 1001;
+        border: 1px solid rgba(245, 236, 215, .08);
+        border-radius: 18px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, .28);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-12px);
+        transition: opacity var(--tr), transform var(--tr), visibility var(--tr)
       }
 
       .nav-links.open {
-        right: 0
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0)
       }
 
       .mobile-overlay {
-        display: block
+        display: block;
+        pointer-events: none
+      }
+
+      .mobile-overlay.visible {
+        pointer-events: auto
       }
 
       .nav-link {
-        font-size: 1.2rem;
-        padding: 10px 0;
-        color: rgba(245, 236, 215, .8)
+        font-size: 1rem;
+        padding: 12px 0;
+        color: rgba(245, 236, 215, .85);
+        width: 100%
       }
 
       .menu-grid {
@@ -2310,11 +2327,9 @@
 </head>
 
 <body>
-  <!-- CURSOR -->
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursor-ring"></div>
 
-  <!-- LOADER -->
   <div id="loader">
     <div class="loader-logo">María Bonita</div>
     <div class="loader-sub">Brunch &amp; Drunch</div>
@@ -2323,7 +2338,6 @@
     </div>
   </div>
 
-  <!-- NAVBAR -->
   <header id="navbar">
     <nav class="nav-container" role="navigation" aria-label="Navegación principal">
       <div class="nav-logo"><a href="#inicio" aria-label="María Bonita - Inicio">
@@ -2341,14 +2355,14 @@
       </ul>
       <a href="#reservaciones" class="nav-cta btn btn-primary btn-sm" style="display:none" aria-hidden="true">Reservar
         Mesa</a>
-      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false"><span
-          class="ham-bar"></span><span class="ham-bar"></span><span class="ham-bar"></span></button>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Abrir menú" aria-controls="nav-links"
+        aria-expanded="false"><span class="ham-bar"></span><span class="ham-bar"></span><span
+          class="ham-bar"></span></button>
     </nav>
     <div class="mobile-overlay" id="mobile-overlay"></div>
   </header>
 
   <main>
-    <!-- HERO -->
     <section id="inicio" class="hero" aria-label="Bienvenida" role="banner">
       <div class="hero-bg"></div>
       <div class="hero-decor" aria-hidden="true">
@@ -2390,7 +2404,6 @@
       </div>
     </section>
 
-    <!-- STATS -->
     <div class="stats-bar" aria-label="Estadísticas">
       <div class="container">
         <div class="stats-grid">
@@ -2410,7 +2423,6 @@
       </div>
     </div>
 
-    <!-- FEATURES -->
     <section class="features" aria-label="Características">
       <div class="container">
         <div class="features-grid">
@@ -2436,7 +2448,6 @@
       </div>
     </section>
 
-    <!-- MENU -->
     <section id="menu" class="section menu-section" aria-label="Nuestro menú">
       <div class="container">
         <div class="menu-header reveal">
@@ -2454,7 +2465,8 @@
         <div class="menu-grid" id="menu-grid" role="list">
           <article class="menu-card reveal" data-category="brunch" role="listitem">
             <div class="menu-card-img">
-              <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141" alt="Huevos Benedictinos">
+              <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=1200&q=80"
+                alt="Huevos Benedictinos a la Criolla">
               <span class="menu-card-badge badge-brunch">Brunch</span>
               <span class="badge-fav">⭐ Favorito</span>
             </div>
@@ -2479,7 +2491,8 @@
 
           <article class="menu-card reveal" data-category="drunch" role="listitem">
             <div class="menu-card-img">
-              <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092" alt="Tacos de costilla">
+              <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=1200&q=80"
+                alt="Tacos de Costilla BBQ">
               <span class="menu-card-badge badge-drunch">Drunch</span>
               <span class="badge-fav">⭐ Favorito</span>
             </div>
@@ -2504,7 +2517,8 @@
 
           <article class="menu-card reveal" data-category="postres" role="listitem">
             <div class="menu-card-img">
-              <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b" alt="Cheesecake">
+              <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1200&q=80"
+                alt="Cheesecake de Maracuyá">
               <span class="menu-card-badge badge-postres">Postres</span>
             </div>
             <div class="menu-card-body">
@@ -2526,12 +2540,11 @@
             </div>
           </article>
         </div>
-        <div class="menu-cta-wrap reveal"><a href="https://mariabonitasv.com" class="btn btn-primary" target="_blank"
-            rel="noopener">Ver Menú Completo</a></div>
+        <div class="menu-cta-wrap reveal"><a href="https://linktr.ee/mariabonita_elsalvador" class="btn btn-primary"
+            target="_blank" rel="noopener noreferrer">Ver Menú Completo</a></div>
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section id="nosotros" class="section about-section" aria-label="Sobre nosotros">
       <div class="container">
         <div class="about-grid">
@@ -2591,7 +2604,6 @@
       </div>
     </section>
 
-    <!-- GALLERY -->
     <section id="galeria" class="section gallery-section" aria-label="Galería de fotos">
       <div class="container">
         <div class="gallery-header reveal">
@@ -2766,7 +2778,6 @@
       </div>
     </section>
 
-    <!-- LIGHTBOX -->
     <div id="lightbox" aria-modal="true" role="dialog" aria-label="Imagen ampliada">
       <button class="lightbox-close" id="lb-close" aria-label="Cerrar">&times;</button>
       <button class="lightbox-nav lightbox-prev" id="lb-prev" aria-label="Anterior"><i
@@ -2776,7 +2787,6 @@
           class="fa fa-chevron-right"></i></button>
     </div>
 
-    <!-- TESTIMONIALS -->
     <section id="opiniones" class="section testimonials-section" aria-label="Opiniones de clientes">
       <div class="container">
         <div class="testimonials-header reveal">
@@ -2918,7 +2928,6 @@
       </div>
     </section>
 
-    <!-- RESERVATIONS -->
     <section id="reservaciones" class="section reservations-section" aria-label="Hacer una reservación">
       <div class="container">
         <div class="reservations-grid">
@@ -3024,7 +3033,6 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contacto" class="section contact-section" aria-label="Contacto y ubicación">
       <div class="container">
         <div class="contact-grid">
@@ -3072,7 +3080,6 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer" role="contentinfo">
     <div class="container">
       <div class="footer-grid">
@@ -3107,8 +3114,9 @@
               rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i><span>María Bonita SV</span></a>
             <a href="https://www.tiktok.com/@mariabonita_sv" class="social-link-row" target="_blank" rel="noopener"
               aria-label="TikTok"><i class="fab fa-tiktok"></i><span>@mariabonita_sv</span></a>
-            <a href="https://linktr.ee" class="social-link-row" target="_blank" rel="noopener" aria-label="Linktree"><i
-                class="fa fa-link"></i><span>linktr.ee/mariabonita</span></a>
+            <a href="https://linktr.ee/mariabonita_elsalvador" class="social-link-row" target="_blank"
+              rel="noopener noreferrer" aria-label="Linktree"><i
+                class="fa fa-link"></i><span>linktr.ee/mariabonita_elsalvador</span></a>
           </div>
         </div>
         <div class="footer-newsletter-col">
@@ -3130,7 +3138,6 @@
     </div>
   </footer>
 
-  <!-- CONFIRM MODAL -->
   <div id="confirm-modal" aria-modal="true" role="dialog" aria-label="Reservación confirmada">
     <div class="modal-box">
       <div class="modal-check"><i class="fa fa-check"></i></div>
@@ -3141,12 +3148,10 @@
     </div>
   </div>
 
-  <!-- BACK TO TOP -->
   <button id="back-top" aria-label="Volver al inicio" title="Volver al inicio"><i class="fa fa-chevron-up"></i></button>
 
   <script>
     'use strict';
-    /* ---- LOADER ---- */
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('loader').classList.add('hidden');
@@ -3154,7 +3159,6 @@
       }, 2600);
     });
 
-    /* ---- CURSOR ---- */
     const cur = document.getElementById('cursor'), curR = document.getElementById('cursor-ring');
     let mx = 0, my = 0, rx = 0, ry = 0;
     document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px' });
@@ -3165,7 +3169,6 @@
       el.addEventListener('mouseleave', () => { cur.classList.remove('hover'); curR.classList.remove('hover') });
     });
 
-    /* ---- PARTICLES ---- */
     (function () {
       const p = document.getElementById('particles');
       if (!p) return;
@@ -3177,28 +3180,46 @@
       }
     })();
 
-    /* ---- NAVBAR ---- */
     const nav = document.getElementById('navbar');
     const ham = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
     const mOv = document.getElementById('mobile-overlay');
     const navLinkEls = document.querySelectorAll('.nav-link');
+
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
-    ham.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      mOv.classList.toggle('visible', open);
-      ham.classList.toggle('open', open);
-      ham.setAttribute('aria-expanded', String(open));
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-    mOv.addEventListener('click', closeMenu);
-    function closeMenu() { navLinks.classList.remove('open'); mOv.classList.remove('visible'); ham.classList.remove('open'); ham.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; }
-    navLinkEls.forEach(l => l.addEventListener('click', closeMenu));
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
-    /* Active link on scroll */
+    function openMenu() {
+      navLinks.classList.add('open');
+      mOv.classList.add('visible');
+      ham.classList.add('open');
+      ham.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      navLinks.classList.remove('open');
+      mOv.classList.remove('visible');
+      ham.classList.remove('open');
+      ham.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    ham.addEventListener('click', () => {
+      if (navLinks.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    mOv.addEventListener('click', closeMenu);
+    navLinkEls.forEach(l => l.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
     const navObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -3211,7 +3232,6 @@
     }, { threshold: .3, rootMargin: '-15% 0px -55% 0px' });
     document.querySelectorAll('section[id]').forEach(s => navObs.observe(s));
 
-    /* ---- SMOOTH SCROLL ---- */
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const id = a.getAttribute('href');
@@ -3224,13 +3244,11 @@
       });
     });
 
-    /* ---- SCROLL REVEAL ---- */
     const revObs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
     }, { threshold: .12, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => revObs.observe(el));
 
-    /* ---- STATS COUNTER ---- */
     const statObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -3249,7 +3267,6 @@
     }, { threshold: .5 });
     document.querySelectorAll('.stat-num').forEach(el => statObs.observe(el));
 
-    /* ---- RATING BARS ---- */
     const barObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -3261,7 +3278,6 @@
     const barSection = document.querySelector('.rating-overview');
     if (barSection) barObs.observe(barSection);
 
-    /* ---- MENU FILTER ---- */
     const filterBtns = document.querySelectorAll('.filter-btn');
     const menuCards = document.querySelectorAll('.menu-card');
     filterBtns.forEach(btn => {
@@ -3284,7 +3300,6 @@
     });
     menuCards.forEach(c => { c.style.transition = 'opacity .35s ease,transform .35s ease'; c.style.opacity = '1'; });
 
-    /* ---- GALLERY LIGHTBOX ---- */
     const galleryItems = document.querySelectorAll('.gallery-item');
     const lb = document.getElementById('lightbox');
     const lbContent = document.getElementById('lb-content');
@@ -3331,7 +3346,6 @@
     lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
     document.addEventListener('keydown', e => { if (!lb.classList.contains('open')) return; if (e.key === 'Escape') closeLb(); if (e.key === 'ArrowLeft') navLb(-1); if (e.key === 'ArrowRight') navLb(1); });
 
-    /* ---- TESTIMONIALS SLIDER ---- */
     const track = document.getElementById('reviews-track');
     const dots = document.querySelectorAll('.dot');
     let slideIdx = 0;
@@ -3345,7 +3359,6 @@
     startAuto();
     if (track) { track.addEventListener('mouseenter', stopAuto); track.addEventListener('mouseleave', startAuto); }
 
-    /* ---- RESERVATION FORM ---- */
     (function () {
       const form = document.getElementById('reservation-form');
       if (!form) return;
@@ -3405,12 +3418,10 @@
       modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
     })();
 
-    /* ---- BACK TO TOP ---- */
     const btt = document.getElementById('back-top');
     window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 400), { passive: true });
     btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    /* ---- NEWSLETTER ---- */
     document.querySelector('.newsletter-btn')?.addEventListener('click', function () {
       const inp = this.previousElementSibling;
       if (inp && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inp.value)) {
